@@ -186,6 +186,12 @@ return (1);
                               ->where('email', $email)
                               ->first();
 
+        if ($get_user_details == null)
+        {
+            $message = 'Email not registered';
+            return StatusResponse::ApiCode4xx(404, $message);
+        }
+
         // Check password match
         $hashedPassword = $get_user_details->password;
 
